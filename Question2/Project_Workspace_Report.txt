@@ -1,0 +1,29 @@
+===== PROJECT WORKSPACE REPORT - Question 2 =====
+--- 1. DIRECTORY STRUCTURE ---
+project_workspace:
+docs
+files
+
+project_workspace/docs:
+
+project_workspace/files:
+data.txt
+Explanation: Created the workspace with two sub-folders and a file.
+--- 2. PERMISSIONS BEFORE ---
+total 8
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  3 14:55 docs
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  3 14:55 files
+-rw-rw-rw- 1 codespace codespace 0 Jul  3 14:55 project_workspace/files/data.txt
+Explanation: Shows the default permissions Linux gave the new files.
+--- 3. OWNERSHIP ---
+total 8
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  3 14:55 docs
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  3 14:55 files
+Explanation: The user and group columns show who owns the files.
+--- 4. UMASK ---
+0022
+Explanation: The umask decides default permissions for new files.
+--- 5. PERMISSIONS AFTER ---
+drwxr-x---+ 4 codespace codespace 4096 Jul  3 14:55 project_workspace
+-rw-r----- 1 codespace codespace 0 Jul  3 14:55 project_workspace/files/data.txt
+Explanation: 750 on the folder and 640 on the file give the owner full control, group limited access, others none, protecting project data.

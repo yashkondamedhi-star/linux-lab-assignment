@@ -1,0 +1,62 @@
+===== I/O INVESTIGATION REPORT - Question 4 =====
+--- 1. OPEN FILES ---
+COMMAND    PID  TID TASKCMD        USER   FD      TYPE             DEVICE  SIZE/OFF    NODE NAME
+docker-in    1                codespace  cwd       DIR               0,46      4096 1101733 /
+docker-in    1                codespace  rtd       DIR               0,46      4096 1101733 /
+docker-in    1                codespace  txt       REG                8,1    845272  774629 /usr/sbin/docker-init
+docker-in    1                codespace    0u      CHR                1,3       0t0      49 /dev/null
+docker-in    1                codespace    1w     FIFO               0,14       0t0   28682 pipe
+docker-in    1                codespace    2w     FIFO               0,14       0t0   28683 pipe
+sh           6                codespace  cwd       DIR               0,46      4096 1101733 /
+sh           6                codespace  rtd       DIR               0,46      4096 1101733 /
+sh           6                codespace  txt       REG               0,46    129784 1048830 /usr/bin/dash
+sh           6                codespace  mem       REG               0,46   2125328 1049464 /usr/lib/x86_64-linux-gnu/libc.so.6
+sh           6                codespace  mem       REG               0,46    236616 1049444 /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+sh           6                codespace    0u      CHR                1,3       0t0      49 /dev/null
+sh           6                codespace    1w     FIFO               0,14       0t0   28682 pipe
+sh           6                codespace    2w     FIFO               0,14       0t0   28683 pipe
+sshd       223                     root  cwd   unknown                                      /proc/223/cwd (readlink: Permission denied)
+sshd       223                     root  rtd   unknown                                      /proc/223/root (readlink: Permission denied)
+sshd       223                     root  txt   unknown                                      /proc/223/exe (readlink: Permission denied)
+sshd       223                     root NOFD                                                /proc/223/fd (opendir: Permission denied)
+dockerd    253                     root  cwd   unknown                                      /proc/253/cwd (readlink: Permission denied)
+Explanation: lsof lists files currently open by processes.
+--- 2. FILE DESCRIPTORS ---
+total 0
+lrwx------ 1 codespace codespace 64 Jul  3 14:52 0 -> /dev/pts/2
+lrwx------ 1 codespace codespace 64 Jul  3 14:52 1 -> /dev/pts/2
+lrwx------ 1 codespace codespace 64 Jul  3 14:52 2 -> /dev/pts/2
+lrwx------ 1 codespace codespace 64 Jul  3 14:52 255 -> /dev/pts/2
+l-wx------ 1 codespace codespace 64 Jul  3 14:52 6 -> /dev/null
+Explanation: 0=stdin, 1=stdout, 2=stderr are the standard descriptors.
+--- 3. REDIRECTION ---
+output.txt:
+normal output
+error.txt:
+ls: cannot access '/nofolder': No such file or directory
+combined.txt:
+ls: cannot access '/nofolder': No such file or directory
+Explanation: > saves output, 2> saves errors, 2>&1 saves both into one file.
+--- 4. RESOURCE LIMITS ---
+real-time non-blocking time  (microseconds, -R) unlimited
+core file size              (blocks, -c) unlimited
+data seg size               (kbytes, -d) unlimited
+scheduling priority                 (-e) 0
+file size                   (blocks, -f) unlimited
+pending signals                     (-i) 31749
+max locked memory           (kbytes, -l) 8192
+max memory size             (kbytes, -m) unlimited
+open files                          (-n) 524288
+pipe size                (512 bytes, -p) 8
+POSIX message queues         (bytes, -q) 819200
+real-time priority                  (-r) 0
+stack size                  (kbytes, -s) 8192
+cpu time                   (seconds, -t) unlimited
+max user processes                  (-u) unlimited
+virtual memory              (kbytes, -v) unlimited
+file locks                          (-x) unlimited
+Max open files:
+524288
+Explanation: ulimit shows limits like the max files a process can open.
+--- 5. HOW LINUX MANAGES I/O ---
+Linux treats everything as a file, tracks open files with descriptors, allows redirection, and uses ulimit to cap resources.

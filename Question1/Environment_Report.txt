@@ -1,0 +1,21 @@
+===== ENVIRONMENT REPORT - Question 1 =====
+--- 1. USERNAME AND GROUPS ---
+codespace
+uid=1000(codespace) gid=1000(codespace) groups=1000(codespace),985(pipx),986(python),987(oryx),988(golang),989(docker),990(sdkman),991(rvm),992(php),993(conda),994(nvs),995(nvm),996(hugo),1001(ssh)
+codespace pipx python oryx golang docker sdkman rvm php conda nvs nvm hugo ssh
+Explanation: Shows my username and the groups my account belongs to, confirming my identity and access.
+--- 2. CURRENT SHELL ---
+/bin/bash
+Explanation: Shows the shell (command interpreter) I am currently using.
+--- 3. WORKING DIRECTORY ---
+/workspaces/linux-lab-assignment/Question1
+Explanation: Shows the full path of the folder I am currently in.
+--- 4. FILES AND DIRECTORIES ---
+total 12
+drwxrwxrwx+ 2 codespace codespace 4096 Jul  3 14:54 .
+drwxrwxrwx+ 8 codespace root      4096 Jul  3 14:53 ..
+-rw-rw-rw-  1 codespace codespace  745 Jul  3 14:54 Environment_Report.txt
+Explanation: Lists all files and folders here, including hidden ones, with permissions and owners.
+--- 5. NETWORK CONNECTIVITY ---
+HTTP/2 200 
+Explanation: Tested the internet connection; a reply confirms the network is working.
